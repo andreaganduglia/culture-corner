@@ -1,0 +1,50 @@
+<?php
+include('etc/conf.php');
+include('libs/3p.httpful.phar');
+include('libs/app.helper.php');
+include('libs/app.base.php');
+
+$app = new Appbase;
+
+?><html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Culture corner</title>
+<link rel="stylesheet" href="a/<?php echo $appconf['assets']['css']; ?>">
+</head>
+<body id="btn" rel="">
+<header>
+	<h1><a href="./">Culture corner <span class="large">- A bit of Wikipedia for your spare time</span></a></h1>
+	<?php //<div><a href="./?get=1" class="start" rel='["","lc"]'>@</a></div> ?>
+</header>
+<div id="t">
+<?php
+	if(!trim($_GET['q'])){
+		echo $app->render_section([
+			'class' => 'center',
+			'h1' => 'Culture corner',
+			'h2' => 'A bit of Wikipedia from your spare time',
+			'text' => '<p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur non nulla sit amet nisl'.
+					  'tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</p>'.
+					  '<p><a href="./?get=1" class="start" rel=\'["","lc"]\'>START</a></p>'.
+					  '<ul class="rel">'.
+					  $app->callback($appconf['categories'],function($i){
+					  		$o = [];
+					  		ksort($i);
+						foreach($i as $k => $v) {
+							//$o[] = sprintf("<li><a href=\"./?c=%s&get=1\" onclick=\"APP.get('%s','c')\">%s</a></li>",$k,$k,$v['label']);
+							$o[] = sprintf("<li><a href=\"./?c=%s&get=1\" class=\"start\" rel='[\"%s\",\"c\"]'>%s</a></li>",$k,$k,$v['label']);
+						}   
+						return implode('',$o);					  		
+					  }).
+					  '</ul>',
+			'foot' => null //'<a href="./?get=1" class="start" rel=\'["","f"]\'>RANDOM ARTICLE</a>'
+		]);
+	}
+?>
+</div>
+<div id="fb"></div>
+<script src="a/<?php echo $appconf['assets']['js']; ?>"></script>
+</body>
+</html>

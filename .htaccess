@@ -1,0 +1,59 @@
+AddDefaultCharset UTF-8
+FileETag none
+<IfModule mod_rewrite.c>
+Options +FollowSymlinks
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$	   /index.php [L]
+</IfModule>
+
+<ifModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/gif "access plus 10 years"
+ExpiresByType image/jpg "access plus 10 years"
+ExpiresByType image/jpeg "access plus 10 years"
+ExpiresByType image/png "access plus 10 years"
+ExpiresByType image/vnd.microsoft.icon "access plus 10 years"
+ExpiresByType image/x-icon "access plus 10 years"
+ExpiresByType image/ico "access plus 10 years"
+ExpiresByType application/javascript "now plus 10 years"
+ExpiresByType application/x-javascript "now plus 10 years"
+ExpiresByType text/javascript "now plus 10 years"
+ExpiresByType text/css "now plus 10 years"
+ExpiresByType application/octet-stream "now plus 10 years"
+ExpiresByType application/json "now plus 10 years"
+ExpiresDefault "access plus 1 days"
+</IfModule>
+
+AddType image/svg+xml svg svgz
+AddEncoding gzip svgz
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+AddOutputFilterByType DEFLATE application/x-font
+AddOutputFilterByType DEFLATE application/x-font-opentype
+AddOutputFilterByType DEFLATE application/x-font-otf
+AddOutputFilterByType DEFLATE application/x-font-truetype
+AddOutputFilterByType DEFLATE application/x-font-ttf
+AddOutputFilterByType DEFLATE application/x-javascript
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/json
+AddOutputFilterByType DEFLATE font/opentype
+AddOutputFilterByType DEFLATE font/otf
+AddOutputFilterByType DEFLATE font/ttf
+AddOutputFilterByType DEFLATE image/svg+xml
+AddOutputFilterByType DEFLATE image/x-icon
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/javascript
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/xml
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
