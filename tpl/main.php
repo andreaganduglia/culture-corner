@@ -73,8 +73,8 @@ $HTML[] = "</body>";
 $HTML[] = "</html>";
 
 echo $app->waterfall($HTML,[
-	function($i){ return implode(PHP_EOL,$i); },
-	//function($i){ return str_replace(["\n",PHP_EOL], null, $i); },
-	//function($i){ return preg_replace('/\s+/', "\040", $i); }
+	function($i){ return implode(null,$i); },
+	function($i){ return str_replace(["\n",PHP_EOL], null, $i); },
+	function($i){ return preg_replace('/\s+/', "\040", $i); }
 ]);
 die();
