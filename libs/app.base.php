@@ -103,13 +103,13 @@ Class Appbase {
 			'exsectionformat' => 'plain',
 			'plnamespace' => '0',
 			'pllimit' => '100',
-			'clcategories' => $this->callback($this->appconf['categories'],function($i){
-				$o = []; 
-				foreach(explode(',', $i) as $k => $v){
-					$o[] = sprintf('Category:%s',trim($v));
-				}
-				return implode('|',$o);
-			}),
+			// 'clcategories' => $this->callback($this->appconf['categories'],function($i){
+			// 	$o = []; 
+			// 	foreach(explode(',', $i) as $k => $v){
+			// 		$o[] = sprintf('Category:%s',trim($v));
+			// 	}
+			// 	return implode('|',$o);
+			// }),
 			'wbptterms' => 'description',
 			'pithumbsize' => $this->callback(600,function($i){
 				$DPR = 1; $SIZE = $i;
@@ -122,7 +122,9 @@ Class Appbase {
 					$SIZE = $_SESSION['SCREEN-X']*$DPR;
 				}
 				return $SIZE;
-			})
+			}),
+			'meta' => 'siteinfo',
+			'siprop' => 'rightsinfo'
 		];
 
 		// Set pageids
@@ -142,8 +144,8 @@ Class Appbase {
 		$this->http_get($APIURL);
 
 		if($this->http_get_response['status'] == 'ok' && $this->http_get_response['code'] == 200){
-			$set = json_decode($this->http_get_response['body'],TRUE);
-			$set = current($set['query']['pages']);
+			$sset = json_decode($this->http_get_response['body'],TRUE);
+			$set = current($sset['query']['pages']);
 
 			// I want 10 links random
 			shuffle($set['links']);
@@ -165,7 +167,8 @@ Class Appbase {
 					if(trim($i)){ return $i; }
 					return $_SESSION['CATEGORY'];
 				}),
-				'image' => $set['thumbnail']
+				'image' => $set['thumbnail'],
+				'rights' => $sset['query']['rightsinfo']
 			];
 		}
 		return false;
@@ -202,6 +205,18 @@ Class Appbase {
 			</section>';
 		return $this->microtemplate($template,$a);
 	}
+
+	public function render_section_rights($a=[])
+	{
+		$template = 
+			'<section class="rights">
+				<p>
+					This article uses material from the Wikipedia article <a href="//en.wikipedia.org/wiki/${TITLE}">${TITLE}</a>,
+					which is released under the <a href="${URL}">${TEXT}</a>.
+				</p>	
+			</section>';
+		return $this->microtemplate($template,$a);
+	}	
 
 	public function helper_title2url($title){
 		$title = str_replace("\040", "_", $title);

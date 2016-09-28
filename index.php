@@ -8,6 +8,7 @@ $app = new Appbase;
 $request = current(explode('?',$_SERVER['REQUEST_URI'],2));
 
 $nojs = false;
+$frontpage = false;
 if($_GET['get'] == 1){
 	$nojs = true;
 }
@@ -21,6 +22,7 @@ switch (true):
 	case $request == '/':
 	case preg_match('/^\/w\/(.*?)$/',$request,$q):
 
+		if($request == '/'){ $frontpage = true; }
 		$payload = $q[1];
 		if($nojs || $payload){
 			if($page = $app->api_get_page($payload,'title')){
