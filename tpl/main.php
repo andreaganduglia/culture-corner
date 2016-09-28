@@ -8,6 +8,7 @@ $HTML[] = '<meta name="viewport" content="width=device-width, initial-scale=1.0"
 $HTML[] = '<title>Culture corner</title>';
 $HTML[] = sprintf('<link rel="stylesheet" href="%s">',$appconf['assets']['css']);
 $HTML[] = '</head>';
+$HTML[] = '<body>';
 $HTML[] = '<img src="/1x.jpg" srcset="/1.0x.jpg 1x, /1.5x.jpg 1.5x, /2.0x.jpg 2x, /3.0x.jpg 3x" style="display:none" rel="https://goo.gl/HrU247"/>';
 $HTML[] = sprintf('<body id="btn" rel="%s">',$_SESSION['CATEGORY']);
 $HTML[] = '<header>';
@@ -73,8 +74,8 @@ $HTML[] = "</body>";
 $HTML[] = "</html>";
 
 echo $app->waterfall($HTML,[
-	function($i){ return implode(null,$i); },
-	function($i){ return str_replace(["\n",PHP_EOL], null, $i); },
-	function($i){ return preg_replace('/\s+/', "\040", $i); }
+	function($i){ return implode(PHP_EOL,$i); },
+	//function($i){ return str_replace(["\n",PHP_EOL], null, $i); },
+	//function($i){ return preg_replace('/\s+/', "\040", $i); }
 ]);
 die();
