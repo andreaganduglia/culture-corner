@@ -18,7 +18,7 @@ if($frontpage){
 	$HTML[] = $app->render_section([
 		'class' => 'frontpage',
 		'h1' => 'Culture corner',
-		'h2' => 'A bit of Wikipedia from your spare time',
+		'h2' => 'A bit of Wikipedia for your spare time',
 		'text' => '<p><em>Learning never exhausts the mind.</em> (<a href="/w/Leonardo_da_Vinci" class="start" rel=\'["Leonardo_da_Vinci","p"]\'>cit</a>)<br>So, press start or choose a topic below and learn something.<br>Have fun!</p>'.
 				  '<p><a href="/c/null?get=1" class="starter start" rel=\'["","lc"]\'>START</a></p>'.
 				  '<ul class="rel">'.
