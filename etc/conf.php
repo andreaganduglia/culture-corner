@@ -3,7 +3,7 @@ error_reporting(0);
 session_start();
 define('APP_STAGE','production');
 //define('APP_STAGE','stage');
-define('APP_VERSION','1.1.0');
+define('APP_VERSION','1.1.1');
 define('APP_LANG','en');
 
 $appconf = [];

@@ -7,6 +7,7 @@ $HTML[] = '<meta charset="utf-8">';
 $HTML[] = '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
 $HTML[] = '<title>Culture corner</title>';
 $HTML[] = sprintf('<link rel="stylesheet" href="%s">',$appconf['assets']['css']);
+$HTML[] = sprintf('<!--v.%s-->',APP_VERSION);
 $HTML[] = '</head>';
 $HTML[] = sprintf('<body id="btn" rel="%s">',$_SESSION['CATEGORY']);
 $HTML[] = '<img src="/1x.jpg" srcset="/1.0x.jpg 1x, /1.5x.jpg 1.5x, /2.0x.jpg 2x, /3.0x.jpg 3x" style="display:none" rel="https://goo.gl/HrU247"/>';
